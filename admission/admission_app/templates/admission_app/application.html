@@ -1,0 +1,109 @@
+{% extends "admission_app/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if hide.exists %}
+<div class="container mt-4">
+    <div class="row">
+        <h1 style="text-align: center;">Personal Details</h1>
+            <hr>
+            <div class="media">
+                <img src="{{ user.profile.image.url }}" alt="userprofile" class="rounded-circle account-img">
+                <div class="media-body">
+                    <h3 class="mt-0"> This is {{ user.username }}'s account</h3>
+                    <p class="text-secondary"> {{ user.email }}</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="profile-tab">
+                <div class="tab-pane">
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Full Name :</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.application.name}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Course :</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.application.course}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email :</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.email}}</p>
+                        </div>
+                    </div>
+                    {% if user.application.phone_no %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Phone Number :</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.application.phone_no}}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Address :</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.application.address}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <h1 style="text-align: center;">Your Documents</h1>
+            <hr>
+        <div class="col-md-8">
+            <div class="profile-tab">
+                <div class="tab-pane">
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Birth Certificate :</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p><a href="{{user.application.birth_certificate.url}}"> View SSC Passing Certificate</a></p>
+                        </div>
+                    </div>
+                    {% if user.application.phone_no %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>SSC Leaving Certificate :</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p><a href="{{user.application.leaving_certificate.url}}">View SSC Leaving Certificate</a></p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+</div>
+<h4>Click here to edit the application</h4><a href="#" class="btn btn-secondary" style="width: 20rem;">Edit Application</a>
+<br><br>
+{% else %}
+<div class="container mt-4">
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endif %}
+
+{% endblock content %}

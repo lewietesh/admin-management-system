@@ -1,0 +1,23 @@
+{% extends "admission_app/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div class="content-section">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend> Create an Account</legend>
+                <!-- <label for="first_name">FirstName:</label> -->
+                <!-- <input type="first_name" type="text" name="first_name" maxlength="100"> -->
+                {{ form|crispy}}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="#">Sign In</a>
+            </small>
+        </div>
+   </div>
+{% endblock content %}

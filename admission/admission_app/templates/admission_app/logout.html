@@ -1,0 +1,12 @@
+{% extends "admission_app/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>You have been logged out</h3>
+   <div class="content-section">
+        <div class="border-top pt-3">
+            <small class="text-muted">
+             You can log in again <a class="ml-2" href="{%  url 'admission-login' %}">Sign In</a>
+            </small>
+        </div>
+   </div>
+{% endblock content %}

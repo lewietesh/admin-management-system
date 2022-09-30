@@ -1,0 +1,23 @@
+{% extends "admission_app/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div class="content-section">
+        <div class="media">
+            <img src="{{ user.profile.image.url }}" alt="userprofile" class="rounded-circle account-img">
+            <div class="media-body">
+                <h3 class="mt-0"> This is {{ user.username }}'s profile.</h3>
+                <p class="text-secondary"> {{ user.email }}</p>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend> Update your profile</legend>
+                {{ u_form|crispy}}
+                {{ p_form|crispy}}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
+   </div>
+{% endblock content %}

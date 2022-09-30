@@ -1,0 +1,34 @@
+{% extends 'admission_app/base.html' %}
+{% block content %}
+        {% for student in students %}
+        <article class="media content_section">
+            <img  class="rounded-circle article-img" src="{{  user.profile.image.url }}" alt="">
+           <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#"> Name: {{ student.name }}</a> <br>
+                <small class="text-muted">Date_Joined: {{ student.date_joined }}</small>
+                <p> Email: {{ student.email }}</p>
+                <p>Age: {{ student.age }}</p>
+                <p>Course: {{ student.course }}</p>
+            </div>
+           </div> 
+           {% endfor %}
+
+           <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#"> Name: {{ user.username }}</a> <br>
+                <small class="text-muted">Date_Joined: {{ user.application.date_joined }}</small>
+                <p> Email: {{ user.email }}</p>
+                <p>Course: {{ user.application.course }}</p>
+            </div>
+           <div class="container w-50 mt-4 shadow">
+            <h3>Your application is {{application.Application_Status}}</h3>
+            <br>
+            <h5>{{application.message}}</h5>
+        </div>
+        </article>
+      
+{% endblock content %}
+
+
+    
